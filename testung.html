@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Blob Example</title>
+</head>
+<body>
+	<a download="demo.txt" href='#'
+		id="link">Download sample text file</a>
+	<script>
+		let abc = new Blob(["This is demo file."],{ type: 'text/plain' });
+		link.href = URL.createObjectURL(abc);
+	</script>
+</body>
+</html>
