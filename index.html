@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>JavaScript Blob Example</title>
+	<title>JavaScript Blob PDF Example</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-	<a download="demo.txt" href='#'
-		id="link">Download sample text file</a>
+	<a download="demo.pdf" href="#" id="link">Download sample PDF file</a>
 	<script>
-		let abc = new Blob(["This is demo file."],{ type: 'text/plain' });
-		link.href = URL.createObjectURL(abc);
+		// Wait for jsPDF to load
+		window.onload = () => {
+			const { jsPDF } = window.jspdf;
+			const doc = new jsPDF();
+
+			// Add some text to the PDF
+			doc.text("This is a sample PDF file created with jsPDF.", 10, 10);
+
+			// Generate PDF Blob and set download link
+			const pdfBlob = doc.output("blob");
+			document.getElementById("link").href = URL.createObjectURL(pdfBlob);
+		};
 	</script>
 </body>
 </html>
